@@ -51,7 +51,21 @@ const QSsVM:QuestionVM[] = [
     [
       {intId:1,intQuestionId:1, AnswerText:"test_1_answer_1" ,intMark:1},
       {intId:2,intQuestionId:1, AnswerText:"test_1_answer_2" ,intMark:0},
-      {intId:3,intQuestionId:1, AnswerText:"test_1_answer_4" ,intMark:0}
+      {intId:3,intQuestionId:1, AnswerText:"test_1_answer_3" ,intMark:0}
+    ]
+  },
+  { intQuestionId:2,intCategoryId:1,QuestionText:"test_2",CategoryName:"IT",Answers:
+    [
+      {intId:4,intQuestionId:1, AnswerText:"test_2_answer_1" ,intMark:0},
+      {intId:5,intQuestionId:1, AnswerText:"test_2_answer_2" ,intMark:1},
+      {intId:6,intQuestionId:1, AnswerText:"test_2_answer_3" ,intMark:0}
+    ]
+  },
+  { intQuestionId:3,intCategoryId:1,QuestionText:"test_3",CategoryName:"IT",Answers:
+    [
+      {intId:7,intQuestionId:1, AnswerText:"test_3_answer_1" ,intMark:0},
+      {intId:8,intQuestionId:1, AnswerText:"test_3_answer_2" ,intMark:0},
+      {intId:9,intQuestionId:1, AnswerText:"test_3_answer_3" ,intMark:1}
     ]
   },
   
