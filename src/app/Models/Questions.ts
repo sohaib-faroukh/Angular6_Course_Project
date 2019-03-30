@@ -4,8 +4,8 @@ export class Question {
     intId:number
     intCategoryId:number
     QuestionText: string
-    booleanIsHTML:boolean
-    intQuestionTypeId:number
+    booleanIsHTML?:boolean
+    intQuestionTypeId?:number
 }
 
 
