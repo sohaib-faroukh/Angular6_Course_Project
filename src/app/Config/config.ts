@@ -5,5 +5,6 @@ export const GetHeaders={
 } 
 
 export const PostHeaders = {
-    "content-type": "application/json"
+    "content-type": "application/json",
+    "authorization": "my-auth-token"
 } 
