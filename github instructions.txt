@@ -1,0 +1,14 @@
+1 - git add <FILENAME> : add updated file to local repo .
+    - below some git add specifications :
+    {
+	git add -A stages all changes
+
+	git add . stages new files and modifications, without deletions
+
+	git add -u stages modifications and deletions, without new files
+
+    }
+ 
+2 - git commit -m <message>: commit and save changes (-m) for change message .
+
+3 - git push origin master : upload changes form local repo to master(Changable) branch in git repo .  
