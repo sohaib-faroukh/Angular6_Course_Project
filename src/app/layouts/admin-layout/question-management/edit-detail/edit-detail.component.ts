@@ -36,6 +36,7 @@ export class EditDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(res => {
       let Id:number = + res["Id"];
+      console.log("cateched : "+Id);
       this.getDetails(Id);
      
     })

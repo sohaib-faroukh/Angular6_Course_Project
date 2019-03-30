@@ -24,7 +24,7 @@
                 <th scope="row">
                   <!-- <div class="media align-items-center">
                     </div> -->
-                  {{item.QuestionText}}
+                  {{item.intId + " : " +item.QuestionText}}
 
                 </th>
                 <td>
@@ -40,7 +40,7 @@
                     </div>
                   </div> -->
 
-                  <button [routerLink]="['details',item.Id]" routerLinkActive="router-link-active"  >Details</button>
+                  <button [routerLink]="['details',item.intId]" routerLinkActive="router-link-active"  >Details</button>
 
                 </td>
                 <!-- <td>

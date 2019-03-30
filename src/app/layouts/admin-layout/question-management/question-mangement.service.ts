@@ -24,7 +24,13 @@ export class QuestionMangementService {
   }
 
   getQuesDetails(Id:number): Observable<QuestionVM> {
-    return this.http.get<QuestionVM>(`${Url}api/Questions/${Id}`);
+
+ 
+    // Local data
+    return of(QSsVM.find(ele => ele.intQuestionId==Id));
+    
+    // API data 
+    // return this.http.get<QuestionVM>(`${Url}api/Questions/${Id}`);
   }
 
 }
@@ -36,4 +42,17 @@ const QSs:Question[] = [
   {intId:3,intCategoryId:2,QuestionText:"test_3"},
   {intId:4,intCategoryId:3,QuestionText:"test_4"},
   {intId:5,intCategoryId:3,QuestionText:"test_5"},
+]
+
+
+
+const QSsVM:QuestionVM[] = [
+  { intQuestionId:1,intCategoryId:1,QuestionText:"test_1",CategoryName:"IT",Answers:
+    [
+      {intId:1,intQuestionId:1, AnswerText:"test_1_answer_1" ,intMark:1},
+      {intId:2,intQuestionId:1, AnswerText:"test_1_answer_2" ,intMark:0},
+      {intId:3,intQuestionId:1, AnswerText:"test_1_answer_4" ,intMark:0}
+    ]
+  },
+  
 ]
