@@ -1,3 +1,4 @@
+0 - git init : initiate local repo . 
 1 - git add <FILENAME> : add updated file to local repo .
     - below some git add specifications :
     {

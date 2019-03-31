@@ -4,8 +4,8 @@ export class Question {
     intId:number
     intCategoryId:number
     QuestionText: string
-    booleanIsHTML:boolean
-    intQuestionTypeId:number
+    booleanIsHTML?:boolean
+    intQuestionTypeId?:number
 }
 
 
@@ -14,7 +14,7 @@ export class QuestionVM {
     QuestionText: string 
     intCategoryId: number;
     CategoryName : string 
-    booleanIsHTML:boolean
-    intQuestionTypeId:number;
+    booleanIsHTML?:boolean
+    intQuestionTypeId?:number;
     Answers: AnswerVM[];
 }

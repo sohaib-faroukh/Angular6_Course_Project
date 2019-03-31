@@ -25,17 +25,17 @@ export class EditDetailComponent implements OnInit {
     this.QuesDetailsObs.subscribe(res => {
       this.QuesDetails= res;
 
-      let c = document.getElementById('openModel');
-      if (c) {
-        c.click();
-      }
+     
 
     })
   }
 
+  
+
   ngOnInit() {
     this.route.params.subscribe(res => {
       let Id:number = + res["Id"];
+      console.log("cateched : "+Id);
       this.getDetails(Id);
      
     })
