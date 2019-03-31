@@ -24,64 +24,21 @@
                 <th scope="row">
                   <!-- <div class="media align-items-center">
                     </div> -->
-                  {{item.intId + " : " +item.QuestionText}}
+                  {{item.QuestionText}}
 
                 </th>
                 <td>
                   {{item.Category}}
                 </td>
                 <td>
-                  <!-- <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a *ngFor="let answer of item.Answer" class="dropdown-item" href="javascript:void(0)">Action</a>
-                    </div>
-                  </div> -->
 
-                  <button [routerLink]="['details',item.intId]" routerLinkActive="router-link-active"  >Details</button>
+                  <button [routerLink]="['details',item.Id]"
+                   routerLinkActive="router-link-active" 
+                   >Details</button>
 
                 </td>
-                <!-- <td>
-                  <div class="avatar-group">
-                    <a href="javascript:void(0)" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                      <img alt="Image placeholder" src="../assets/img/theme/team-1-800x800.jpg" class="rounded-circle">
-                    </a>
-                    <a href="javascript:void(0)" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Romina Hadid">
-                      <img alt="Image placeholder" src="../assets/img/theme/team-2-800x800.jpg" class="rounded-circle">
-                    </a>
-                    <a href="javascript:void(0)" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Alexander Smith">
-                      <img alt="Image placeholder" src="../assets/img/theme/team-3-800x800.jpg" class="rounded-circle">
-                    </a>
-                    <a href="javascript:void(0)" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Jessica Doe">
-                      <img alt="Image placeholder" src="../assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
-                    </a>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <span class="mr-2">60%</span>
-                    <div>
-                      <div class="progress">
-                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                          aria-valuemax="100" style="width: 60%;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                  </div>
-                </td> -->
+                   
+                
               </tr>
               
             </tbody>

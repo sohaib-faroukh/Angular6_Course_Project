@@ -1,6 +1,6 @@
 export class AnswerVM {
-    intId:number;
-    intQuestionId: number;
+    Id:number;
+    QuestionId: number;
     AnswerText: string ;
-    intMark: number;
+    Mark: number;
 }
