@@ -37,11 +37,6 @@ export class EditDetailComponent implements OnInit {
     this.QuesDetailsObs = this.srv.getQuesDetails(+Id);
     this.QuesDetailsObs.subscribe(res => {
       this.QuesDetails= res;
-
-      debugger
-
-    
-
     })
   }
 

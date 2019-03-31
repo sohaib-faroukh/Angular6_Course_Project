@@ -27,7 +27,7 @@ export class QuestionMangementService {
 
  
     // Local data
-    return of(QSsVM.find(ele => ele.intQuestionId==Id));
+    return of(QSsVM.find(ele => ele.QuestionId==Id));
     
     // API data 
     // return this.http.get<QuestionVM>(`${Url}api/Questions/${Id}`);
@@ -37,35 +37,35 @@ export class QuestionMangementService {
 
 
 const QSs:Question[] = [
-  {intId:1,intCategoryId:1,QuestionText:"test_1"},
-  {intId:2,intCategoryId:2,QuestionText:"test_2"},
-  {intId:3,intCategoryId:2,QuestionText:"test_3"},
-  {intId:4,intCategoryId:3,QuestionText:"test_4"},
-  {intId:5,intCategoryId:3,QuestionText:"test_5"},
+  {Id:1,CategoryId:1,QuestionText:"test_1"},
+  {Id:2,CategoryId:2,QuestionText:"test_2"},
+  {Id:3,CategoryId:2,QuestionText:"test_3"},
+  {Id:4,CategoryId:3,QuestionText:"test_4"},
+  {Id:5,CategoryId:3,QuestionText:"test_5"},
 ]
 
 
 
 const QSsVM:QuestionVM[] = [
-  { intQuestionId:1,intCategoryId:1,QuestionText:"test_1",CategoryName:"IT",Answers:
+  { QuestionId:1,CategoryId:1,QuestionText:"test_1",CategoryName:"IT",Answers:
     [
-      {intId:1,intQuestionId:1, AnswerText:"test_1_answer_1" ,intMark:1},
-      {intId:2,intQuestionId:1, AnswerText:"test_1_answer_2" ,intMark:0},
-      {intId:3,intQuestionId:1, AnswerText:"test_1_answer_3" ,intMark:0}
+      {Id:1,QuestionId:1, AnswerText:"test_1_answer_1" ,Mark:1},
+      {Id:2,QuestionId:1, AnswerText:"test_1_answer_2" ,Mark:0},
+      {Id:3,QuestionId:1, AnswerText:"test_1_answer_3" ,Mark:0}
     ]
   },
-  { intQuestionId:2,intCategoryId:1,QuestionText:"test_2",CategoryName:"IT",Answers:
+  { QuestionId:2,CategoryId:1,QuestionText:"test_2",CategoryName:"IT",Answers:
     [
-      {intId:4,intQuestionId:1, AnswerText:"test_2_answer_1" ,intMark:0},
-      {intId:5,intQuestionId:1, AnswerText:"test_2_answer_2" ,intMark:1},
-      {intId:6,intQuestionId:1, AnswerText:"test_2_answer_3" ,intMark:0}
+      {Id:4,QuestionId:1, AnswerText:"test_2_answer_1" ,Mark:0},
+      {Id:5,QuestionId:1, AnswerText:"test_2_answer_2" ,Mark:1},
+      {Id:6,QuestionId:1, AnswerText:"test_2_answer_3" ,Mark:0}
     ]
   },
-  { intQuestionId:3,intCategoryId:1,QuestionText:"test_3",CategoryName:"IT",Answers:
+  { QuestionId:3,CategoryId:1,QuestionText:"test_3",CategoryName:"IT",Answers:
     [
-      {intId:7,intQuestionId:1, AnswerText:"test_3_answer_1" ,intMark:0},
-      {intId:8,intQuestionId:1, AnswerText:"test_3_answer_2" ,intMark:0},
-      {intId:9,intQuestionId:1, AnswerText:"test_3_answer_3" ,intMark:1}
+      {Id:7,QuestionId:1, AnswerText:"test_3_answer_1" ,Mark:0},
+      {Id:8,QuestionId:1, AnswerText:"test_3_answer_2" ,Mark:0},
+      {Id:9,QuestionId:1, AnswerText:"test_3_answer_3" ,Mark:1}
     ]
   },
   
