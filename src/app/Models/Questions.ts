@@ -1,20 +1,20 @@
 import { AnswerVM } from "./Answers";
 
 export class Question {
-    intId:number
-    intCategoryId:number
+    Id:number
+    CategoryId:number
     QuestionText: string
-    booleanIsHTML?:boolean
-    intQuestionTypeId?:number
+    IsHTML?:boolean
+    QuestionTypeId?:number
 }
 
 
 export class QuestionVM {
-    intQuestionId: number;
+    QuestionId: number;
     QuestionText: string 
-    intCategoryId: number;
+    CategoryId: number;
     CategoryName : string 
-    booleanIsHTML?:boolean
-    intQuestionTypeId?:number;
+    IsHTML?:boolean
+    QuestionTypeId?:number;
     Answers: AnswerVM[];
 }

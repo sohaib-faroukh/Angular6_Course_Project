@@ -14,10 +14,14 @@ export class QuestionManagementComponent implements OnInit {
 
   Questions: Observable<Question[]>;
   // QuesDetails:Observable<QuestionVM>;
-
+  editableId:number=null;
 
   getAllQusetions(){
-    this.Questions = this.srv.getAllQuestions()
+    this.Questions = this.srv.getAllQuestions();
+    this.Questions.subscribe(res=>{
+      
+      console.log(res);
+    })
   }
 
 

@@ -12,30 +12,37 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditDetailComponent implements OnInit {
 
   QuesDetailsObs: Observable<QuestionVM>;
-  QuesDetails: QuestionVM=new QuestionVM();
-
+  QuesDetails: QuestionVM = new QuestionVM();
+  QuesDetailsCopy: QuestionVM=new QuestionVM();
+  editable:Boolean=false;
 
   constructor(private srv:QuestionMangementService,
     private router:Router,
     private route:ActivatedRoute) { }
 
 
+  changeSelectedAnswer(Id:number){
+    this.QuesDetailsCopy.Answers.forEach(ele => ele.Mark = 0);
+    this.QuesDetailsCopy.Answers.find(ele => ele.Id == Id).Mark = 1;
+
+    console.log(this.QuesDetailsCopy.Answers)
+  }
+
+  update(){
+    Object.assign(this.QuesDetailsCopy,this.QuesDetails)
+    this.editable = true
+  }
+
   getDetails(Id: number | string) {
     this.QuesDetailsObs = this.srv.getQuesDetails(+Id);
     this.QuesDetailsObs.subscribe(res => {
       this.QuesDetails= res;
-
-     
-
     })
   }
-
-  
 
   ngOnInit() {
     this.route.params.subscribe(res => {
       let Id:number = + res["Id"];
-      console.log("cateched : "+Id);
       this.getDetails(Id);
      
     })

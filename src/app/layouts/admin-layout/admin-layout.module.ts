@@ -13,7 +13,6 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionManagementComponent } from './question-management/question-management.component';
-import { AnswerManagementComponent } from './answer-management/answer-management.component';
 import { EditDetailComponent } from './question-management/edit-detail/edit-detail.component';
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -33,7 +32,6 @@ import { EditDetailComponent } from './question-management/edit-detail/edit-deta
     IconsComponent,
     MapsComponent,
     QuestionManagementComponent,
-    AnswerManagementComponent,
     EditDetailComponent
   ]
 })

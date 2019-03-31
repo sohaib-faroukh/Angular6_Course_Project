@@ -1,4 +1,3 @@
-import { AnswerManagementComponent } from './answer-management/answer-management.component';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
@@ -14,7 +13,6 @@ export const AdminLayoutRoutes: Routes = [
         { path: 'details/:Id', component:EditDetailComponent },
     ] },
     // { path: 'question/:Id', component: EditDetailComponent },
-    { path: 'answer', component: AnswerManagementComponent },
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'tables',         component: TablesComponent },
