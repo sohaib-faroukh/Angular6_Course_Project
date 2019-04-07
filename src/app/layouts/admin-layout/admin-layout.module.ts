@@ -1,3 +1,5 @@
+import { CategoryManagementComponent } from './category-management/category-management.component';
+import { CategoryEditDetailComponent } from './category-management/category-edit-detail/category-edit-detail.component';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -14,6 +16,10 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionManagementComponent } from './question-management/question-management.component';
 import { EditDetailComponent } from './question-management/edit-detail/edit-detail.component';
+import { AddQuestionComponent } from './question-management/add-question/add-question.component';
+import { AddCategoryComponent } from './category-management/add-category/add-category.component';
+import { ExamManagementComponent } from './exam-management/exam-management.component';
+import { AddExamComponent } from './exam-management/add-exam/add-exam.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -23,7 +29,8 @@ import { EditDetailComponent } from './question-management/edit-detail/edit-deta
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    FormsModule,
   ],
   declarations: [
     DashboardComponent,
@@ -32,7 +39,13 @@ import { EditDetailComponent } from './question-management/edit-detail/edit-deta
     IconsComponent,
     MapsComponent,
     QuestionManagementComponent,
-    EditDetailComponent
+    EditDetailComponent,
+    CategoryManagementComponent,
+    CategoryEditDetailComponent,
+    AddQuestionComponent,
+    AddCategoryComponent,
+    ExamManagementComponent,
+    AddExamComponent
   ]
 })
 

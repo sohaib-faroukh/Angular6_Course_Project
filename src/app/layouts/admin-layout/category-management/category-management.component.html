@@ -1,0 +1,63 @@
+<!-- Page content -->
+<div class="container-fluid">
+  
+  <div class="row mt-5">
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="text-white mb-0">Card tables</h3>
+        </div>
+
+
+
+              <div class="text-center">
+                <button type="button" class="btn btn-primary mt-4" (click)="postNewCateg()">Add Category</button>
+              
+                <app-add-category (categoryChange)="pushNewCateg($event)" *ngIf="showAddCategCompo==true"></app-add-category>
+              
+              </div>
+
+
+
+        <div class="table-responsive">
+          <table class="table align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">CategoryText</th>
+               
+               
+                <!-- <th scope="col">Users</th>
+                <th scope="col">Completion</th> -->
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of Categories | async">
+                <th scope="row">
+                  <!-- <div class="media align-items-center">
+                    </div> -->
+                  {{item.Name}}
+
+                </th>
+                
+                <td>
+
+
+                  <!-- <button [routerLink]="['details',item.Id]" routerLinkActive="router-link-active"  >Details</button> -->
+
+                </td>
+
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<router-outlet></router-outlet>

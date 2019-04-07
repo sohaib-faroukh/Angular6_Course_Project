@@ -1,0 +1,73 @@
+<div class="col-xl-8 order-xl-1">
+  <div class="card bg-secondary shadow">
+    <div class="card-header bg-white border-0">
+      <div class="row align-items-center">
+        <div class="col-8">
+          <!-- <h3 class="mb-0">{{QuesDetails.CategoryName}}</h3> -->
+          <!-- <h3 class="mb-0">{{QuesDetails | json}}</h3> -->
+        </div>
+        <div class="col-4 text-right">
+          <a class="btn btn-sm btn-primary" (click)="update()">Edit</a>
+        </div>
+
+
+        <!-- <div *ngIf="errorList.length >0">
+  <ul>
+    <li style="color:red" *ngFor="let item of errorList">{{item}}</li>
+  </ul>
+</div> -->
+
+        <div class="col-4 text-right">
+          <button class="btn btn-sm btn-primary" (click)="Cancel()">Cancel</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card-body">
+      <form #submitForm="ngForm">
+
+        <div class="col-4 text-right">
+          <button [disabled]="submitForm.invalid" class="btn btn-sm btn-primary" (click)="postNewQues();reset()">save</button>
+        </div>
+
+
+        <div class="pl-lg-4">
+          <div class="col-4 text-right">
+
+            <!-- {{newQuestion | json}} -->
+
+            <label for="QText">category name : </label>
+            <input type="text" class="form-control form-control-alternative" placeholder="Username" [(ngModel)]="newCategory.Name"
+              name="QText" required>
+          </div>
+          <hr>
+          <div class="row">
+            <h1>Answers</h1>
+            <div class="col-lg-6">
+            
+
+              <!-- <i class="ni ni-check-bold" *ngIf="a_item.Mark==1"></i> -->
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div>
+          <ul>
+            <li *ngFor="let q of Questions">
+        
+              <label for="ttext">{{q.QuestionText}}</label>
+              <input  name="ttext" id="ttext" type="checkbox" (change)="selectQuestion(q)">
+        
+            </li>
+          </ul>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>

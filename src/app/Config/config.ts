@@ -1,4 +1,4 @@
-export const Url:string="http://w36303-16/ExamWebApp/"
+export const Url:string="http://w37575-237/ExamWebApp/"
 
 export const GetHeaders={
     "content-type":"application/json"
@@ -6,5 +6,9 @@ export const GetHeaders={
 
 export const PostHeaders = {
     "content-type": "application/json",
-    "authorization": "my-auth-token"
+    // "authorization": "my-auth-token"
 } 
+export const PutHeaders = {
+    "content-type": "application/json",
+    //"authorization": "my-auth-token"
+}

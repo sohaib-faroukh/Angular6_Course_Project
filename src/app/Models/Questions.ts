@@ -5,7 +5,7 @@ export class Question {
     CategoryId:number
     QuestionText: string
     IsHTML?:boolean
-    QuestionTypeId?:number
+    QuestionTypeId:number
 }
 
 
@@ -15,6 +15,6 @@ export class QuestionVM {
     CategoryId: number;
     CategoryName : string 
     IsHTML?:boolean
-    QuestionTypeId?:number;
+    QuestionTypeId:number;
     Answers: AnswerVM[];
 }
