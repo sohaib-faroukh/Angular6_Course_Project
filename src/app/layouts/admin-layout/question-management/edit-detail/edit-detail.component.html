@@ -15,8 +15,20 @@
         <div class="col-4 text-right">
           <a  class="btn btn-sm btn-primary" (click)="update()">Edit</a>
         </div>
+       
+        <div class="col-4 text-right">
+          <button [disabled]="editable==false" class="btn btn-sm btn-primary" (click)="Save()">save</button>
+        </div>
+
+        <div class="col-4 text-right">
+          <button [disabled]="editable==false" class="btn btn-sm btn-primary" (click)="editable = false">Cancel</button>
+        </div>
+
       </div>
     </div>
+
+
+    {{QuesDetailsCopy | json}}
 
     <div class="card-body" *ngIf="QuesDetails.Answers && QuesDetails.Answers.length > 0">
       <form>
@@ -66,11 +78,16 @@
               </div>
           
             </div>
-          
+ 
+                <h3>Select Category : </h3>
+                <select required name="Cselect" id="Cselect" [(ngModel)]="QuesDetailsCopy.CategoryId" (change)="selectCategName(QuesDetailsCopy.CategoryId)">
+                  <option *ngFor="let item_ of CategoriesV" [value]="item_.Id">{{item_.Name}}</option>
+                </select>
+            
           </div>
 
 
-       
+ 
 
        
      

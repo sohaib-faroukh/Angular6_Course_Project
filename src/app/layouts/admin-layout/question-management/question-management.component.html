@@ -7,14 +7,24 @@
         <div class="card-header bg-transparent border-0">
           <h3 class="text-white mb-0">Card tables</h3>
         </div>
+        
+        
+        <div class="text-center">
+          <button type="button" class="btn btn-primary mt-4" (click)="postNewQues()">Add Question</button>
+
+          <app-add-question  (questionsChange)="pushNewQues($event)" *ngIf="showAddQuesCompo==true"></app-add-question>
+          
+        </div>
+        
+
         <div class="table-responsive">
           <table class="table align-items-center table-dark table-flush">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">QuestionText</th>
-                <th scope="col">Category Name</th>
-                <th scope="col">Answers</th>
-                <th scope="col"></th>
+                <!-- <th scope="col">Category Name</th> -->
+                <!-- <th scope="col">Answers</th> -->
+                <th scope="col">action</th>
               </tr>
             </thead>
             <tbody>
@@ -22,15 +32,15 @@
                 <th scope="row">
                   {{item.QuestionText}}
                 </th>
-                <td>
-                  {{item.Category}}
-                </td>
+                <!-- <td>
+                  {{item.CategoryName}}
+                </td> -->
                 <td>
                    <div class="text-center">
                     <button type="button"
                      class="btn btn-primary mt-4" 
-                     [routerLink]="['details',item.Id]"
-                    routerLinkActive="router-link-active" >Details</button>
+                     (click)="selectQues(item)"
+                     >Details</button>
                   </div>
                 </td>
               </tr>
@@ -38,7 +48,8 @@
           </table>
         </div>
       </div>
-         <router-outlet></router-outlet>
+         <!-- <router-outlet></router-outlet> -->
+        <app-edit-detail [ques]="selectedQues" (ques)="saveChanges($event)" ></app-edit-detail>
     </div>
   </div>
 </div>

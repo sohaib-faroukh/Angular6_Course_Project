@@ -1,0 +1,15 @@
+<input [(ngModel)]="newExam.Name" name="exam_name" placeholder="Exam Name"> 
+              <div class="form-group">
+
+                {{newExam | json}}
+                        <h3>Select Questions : </h3>
+                        <ul  name="Cselect" id="Cselect" >
+                          <li *ngFor="let item_ of QuestionsCopy" >
+                             <input type="checkbox" [value]="item_.Checked" (change)="changeQStatus(item_)"> {{item_.QuestionText}}
+                          </li>
+                        </ul>
+                
+
+              </div>
+
+<button (click)="saveExam()">Save</button>
