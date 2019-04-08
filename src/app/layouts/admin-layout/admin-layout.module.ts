@@ -2,7 +2,7 @@ import { CategoryManagementComponent } from './category-management/category-mana
 import { CategoryEditDetailComponent } from './category-management/category-edit-detail/category-edit-detail.component';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ClipboardModule } from 'ngx-clipboard';
@@ -20,6 +20,8 @@ import { AddQuestionComponent } from './question-management/add-question/add-que
 import { AddCategoryComponent } from './category-management/add-category/add-category.component';
 import { ExamManagementComponent } from './exam-management/exam-management.component';
 import { AddExamComponent } from './exam-management/add-exam/add-exam.component';
+import { CheckedPipePipe } from 'src/app/checked-pipe.pipe';
+import { FoucsedRowDirective } from 'src/app/foucsed-row.directive';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -45,8 +47,16 @@ import { AddExamComponent } from './exam-management/add-exam/add-exam.component'
     AddQuestionComponent,
     AddCategoryComponent,
     ExamManagementComponent,
-    AddExamComponent
+    AddExamComponent,
+    FoucsedRowDirective,
+    CheckedPipePipe,
+    // DatePipe,
+  ],
+
+  providers:[CheckedPipePipe,
+    DatePipe
   ]
+
 })
 
 export class AdminLayoutModule {}

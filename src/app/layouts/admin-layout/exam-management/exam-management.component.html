@@ -1,5 +1,74 @@
-<p>
-  exam-management works!
-</p>
+<div class="container-fluid">
 
-<app-add-exam></app-add-exam>
+  <div class="row mt-5">
+
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="text-white mb-0">Exam Management</h3>
+        </div>
+
+        <div class="card-body">
+          <app-add-exam (addedExam)="postNewExam($event)" *ngIf="showAddExamCompo==true"></app-add-exam>
+
+
+          <div class="text-center" style="margin-bottom:20px">
+            <button type="button" class="btn btn-primary mt-4" (click)="postNewExamAction()">
+              <span *ngIf="showAddExamCompo==false">
+                Add Exam
+              </span>
+              <span *ngIf="showAddExamCompo==true">
+                close
+              </span>
+            </button>
+
+
+
+          </div>
+
+
+          <!-- * datagrid  -->
+
+          
+        <div class="table-responsive">
+            <table class="table align-items-center table-dark table-flush">
+              <thead class="thead-dark">
+                <tr appFoucsedRow = "red">
+                  <th scope="col"># </th>
+                  <th scope="col">Exam name</th>
+                  <th scope="col">Exam Date</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of ExamsObs | async" appFoucsedRow >
+                  <th scope="row"> {{item.Id}}</th>
+                  
+                  <td>{{item.Name}}</td>
+                  <td>{{item.ExamDate | date :'dd/MM/yyyy'}}</td>
+
+                  <td>
+                     <div class="text-center">
+                      <button type="button"
+                       class="btn btn-primary mt-4" 
+                       (click)="selectQues(item)"
+                       >Details</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>
