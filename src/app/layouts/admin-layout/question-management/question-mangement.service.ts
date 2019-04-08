@@ -20,10 +20,10 @@ export class QuestionMangementService {
 
     // Local data
 
-    // return of(QSs);
+    return of(QSs);
 
     // API data 
-    return this.http.get<Question[]>(Url+"api/Questions");
+    // return this.http.get<Question[]>(Url+"api/Questions");
   }
 
   postQuestion(ques:QuestionVM) : Observable<Question> {
@@ -35,10 +35,10 @@ export class QuestionMangementService {
 
  
     // Local data
-    // return of(QSsVM.find(ele => ele.QuestionId==Id));
+    return of(QSsVM.find(ele => ele.QuestionId==Id));
     
     // API data 
-    return this.http.get<QuestionVM>(`${Url}api/Questions/${Id}`);
+    // return this.http.get<QuestionVM>(`${Url}api/Questions/${Id}`);
   }
 
 
@@ -59,37 +59,37 @@ export class QuestionMangementService {
 }
 
 
-// const QSs:Question[] = [
-//   {Id:1,CategoryId:1,QuestionText:"test_1"},
-//   {Id:2,CategoryId:2,QuestionText:"test_2"},
-//   {Id:3,CategoryId:2,QuestionText:"test_3"},
-//   {Id:4,CategoryId:3,QuestionText:"test_4"},
-//   {Id:5,CategoryId:3,QuestionText:"test_5"},
-// ]
+const QSs:Question[] = [
+  {Id:1,CategoryId:1,QuestionText:"test_1",QuestionTypeId:1},
+  {Id:2,CategoryId:2,QuestionText:"test_2",QuestionTypeId:1},
+  {Id:3,CategoryId:2,QuestionText:"test_3",QuestionTypeId:1},
+  {Id:4,CategoryId:3,QuestionText:"test_4",QuestionTypeId:1},
+  {Id:5,CategoryId:3,QuestionText:"test_5",QuestionTypeId:1},
+]
 
  
 
-// const QSsVM:QuestionVM[] = [
-//   { QuestionId:1,CategoryId:1,QuestionText:"test_1",CategoryName:"IT",Answers:
-//     [
-//       {Id:1,QuestionId:1, AnswerText:"test_1_answer_1" ,Mark:1},
-//       {Id:2,QuestionId:1, AnswerText:"test_1_answer_2" ,Mark:0},
-//       {Id:3,QuestionId:1, AnswerText:"test_1_answer_3" ,Mark:0}
-//     ]
-//   },
-//   { QuestionId:2,CategoryId:1,QuestionText:"test_2",CategoryName:"IT",Answers:
-//     [
-//       {Id:4,QuestionId:1, AnswerText:"test_2_answer_1" ,Mark:0},
-//       {Id:5,QuestionId:1, AnswerText:"test_2_answer_2" ,Mark:1},
-//       {Id:6,QuestionId:1, AnswerText:"test_2_answer_3" ,Mark:0}
-//     ]
-//   },
-//   { QuestionId:3,CategoryId:1,QuestionText:"test_3",CategoryName:"IT",Answers:
-//     [
-//       {Id:7,QuestionId:1, AnswerText:"test_3_answer_1" ,Mark:0},
-//       {Id:8,QuestionId:1, AnswerText:"test_3_answer_2" ,Mark:0},
-//       {Id:9,QuestionId:1, AnswerText:"test_3_answer_3" ,Mark:1}
-//     ]
-//   },
+const QSsVM:QuestionVM[] = [
+  { QuestionId:1,CategoryId:1,QuestionText:"test_1",CategoryName:"IT",QuestionTypeId:1,Answers:
+    [
+      {Id:1,QuestionId:1, AnswerText:"test_1_answer_1" ,Mark:1},
+      {Id:2,QuestionId:1, AnswerText:"test_1_answer_2" ,Mark:0},
+      {Id:3,QuestionId:1, AnswerText:"test_1_answer_3" ,Mark:0}
+    ]
+  },
+  { QuestionId:2,CategoryId:1,QuestionText:"test_2",CategoryName:"IT",QuestionTypeId:1,Answers:
+    [
+      {Id:4,QuestionId:1, AnswerText:"test_2_answer_1" ,Mark:0},
+      {Id:5,QuestionId:1, AnswerText:"test_2_answer_2" ,Mark:1},
+      {Id:6,QuestionId:1, AnswerText:"test_2_answer_3" ,Mark:0}
+    ]
+  },
+  { QuestionId:3,CategoryId:1,QuestionText:"test_3",CategoryName:"IT",QuestionTypeId:1,Answers:
+    [
+      {Id:7,QuestionId:1, AnswerText:"test_3_answer_1" ,Mark:0},
+      {Id:8,QuestionId:1, AnswerText:"test_3_answer_2" ,Mark:0},
+      {Id:9,QuestionId:1, AnswerText:"test_3_answer_3" ,Mark:1}
+    ]
+  },
   
-// ]
+]
