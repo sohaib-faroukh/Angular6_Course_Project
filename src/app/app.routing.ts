@@ -11,7 +11,14 @@ const routes: Routes =[
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }, {
+  },
+  
+  {
+    path:'do exam',
+    loadChildren: './exam/exam.module#ExamModule'
+  },
+
+   {
     path: '',
     component: AdminLayoutComponent,
     children: [
