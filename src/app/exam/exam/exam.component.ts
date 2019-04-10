@@ -20,6 +20,8 @@ export class ExamComponent implements OnInit {
 
   currentCategory:number;
   activatedCategories: ActivatedCategory[]=[];
+  quesCopy: QuestionVM[];
+  currentQuestion: any;
   constructor(private srv: ExamService) { }
   QuestionAnswers: UserAnswer[];
   answer1: AnswerVM;
@@ -46,7 +48,6 @@ export class ExamComponent implements OnInit {
   choicedCategoryId:number = null;
   getQuestions(item: Category) {
 
-    
     if(this.choicedCategoryId != null && this.choicedCategoryId!==item.Id){
       if(confirm("do you sure you want to move to another category ? ")){
 
@@ -59,12 +60,30 @@ export class ExamComponent implements OnInit {
            this.activatedCategories[i].isActivate=true;
           }
           this.ques = res;
+          
+          debugger
+          // Sohaib - code
+          this.quesCopy = res;
+          if(this.quesCopy && this.quesCopy.length>0){
+            this.quesCopy.forEach(_v=>{
+              _v.Answers.forEach(_v_=>{
+                _v_["Checked"]=false;
+
+              })
+            })
+          }
+
+          this.currentQuestion = this.quesCopy[0];
+          
+          // end 
+
+
             this.isGetQuestion = true;
           })
 
       }
       else{
-        alert("still in the same category")
+        alert("you are still in the same category...")
       }
     }
 
@@ -78,6 +97,24 @@ export class ExamComponent implements OnInit {
          this.activatedCategories[i].isActivate=true;
         }
         this.ques = res;
+
+      // Sohaib - code
+      this.quesCopy = res;
+      if(this.quesCopy && this.quesCopy.length>0){
+        this.quesCopy.forEach(_v=>{
+          _v.Answers.forEach(_v_=>{
+            _v_["Checked"]=false;
+
+          })
+        })
+      }
+
+      this.currentQuestion = this.quesCopy[0];
+      
+      // end 
+
+
+
           this.isGetQuestion = true;
         })
     }
@@ -85,73 +122,73 @@ export class ExamComponent implements OnInit {
    
 
   }
-  Previous(idQuestion) {
-    if (this.tempQuestionNumber == 0) {
 
+// ******* sohaib - code **************************************************
+
+_prev(Id:number){
+  let index : number = this.quesCopy.findIndex(ele => ele.QuestionId == Id);
+  
+  if(this.quesCopy && this.quesCopy.length>0){
+    if(index != 0){
+      index--;
+      this.currentQuestion = this.quesCopy[index];
     }
-    else {
-      this.isSave = false;
-      this.tempQuestionNumber--;
+    else{
+      alert("this is the first question .");
     }
   }
+}
 
-  Next(idQuestion) {
-    
-    if (this.tempQuestionNumber >= this.ques.length) {
+_next(Id:number){
+  let index : number = this.quesCopy.findIndex(ele => ele.QuestionId == Id);
+  if(this.quesCopy && this.quesCopy.length>0){
+    if(index != this.quesCopy.length-1){
+      let d =0;
+      this.quesCopy[index].Answers.forEach(r_ => {
+        if(r_["Checked"]==true){
+          d += 1;
+        }
+      })
 
+      if(d==0){
+        alert("please select one answer  ...");
+      }
+      else if(d==1){
+        index++;
+        this.currentQuestion = this.quesCopy[index];
+      }
+      else{
+        alert("please select just one answer ...")
+      }
+      
     }
-    else
-      if (this.tempQuestionNumber == this.ques.length - 1) {
+    else{
+      alert("this is the last question .");
+    }
+  }
+}
 
-        this.userQuestionAnswer.QuestionId = idQuestion;
-        this.userQuestionAnswer.SelectedAnswerId = this.answer1.Id;
-        this.userQuestionAnswer.Mark = this.answer1.Mark;
-        
-        this.userQuestionAnswers.push(this.userQuestionAnswer);
 
-        this.userQuestionAnswer=new QuestionAnswer();
-        if(this.answer1==null)
-        {
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-          })
-        }
-        else
-        {
-        this.userQuestionAnswer=new QuestionAnswer();
-        this.isSave = true;
-        }
-      }
-      else {
-        if(this.answer1==null)
-        {
-            {
-              Swal.fire(
-                'warning!',
-                'you are not able to move.',
-                'success'
-              )
-            }
-        }
-        else
-        {
-        this.userQuestionAnswer.QuestionId = idQuestion;
-        this.userQuestionAnswer.SelectedAnswerId = this.answer1.Id;
-        this.userQuestionAnswer.Mark = this.answer1.Mark;
+updateChechedAnswer(QuestionId:number,i:number,event){
+  this.quesCopy.find(ele=>ele.QuestionId==QuestionId).Answers.forEach(ele=>ele["Checked"]=false);
+   
+  this.quesCopy.find(ele=>ele.QuestionId==QuestionId).Answers[i]["Checked"]=event;
 
-        this.userQuestionAnswers.push(this.userQuestionAnswer);
-        this.userQuestionAnswer=new QuestionAnswer();
+  let ix = this.quesCopy.findIndex(ele=>ele.QuestionId==QuestionId);
+  if(ix == this.quesCopy.length-1 && event == true){
+    this.isSave = true;
+  }else{
+    this.isSave = false;
 
-        this.tempQuestionNumber++;
-        }
-      }
   }
 
+}
+
+// ******* end of sohaib - code **************************************************
+
+
+
+  
   Save() { }
   //  activatedCategories[item.Id]
   isactivated: boolean=false;

@@ -25,7 +25,7 @@ export class CategoryManagementComponent implements OnInit {
   editableId: number = null;
 
   selectQues(item: Category) {
-    debugger
+    
     this.selectedQues = item;
   }
 
@@ -38,7 +38,6 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   saveChanges(event) {
-    debugger;
   }
 
   postNewCateg() {

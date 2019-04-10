@@ -27,7 +27,7 @@ export class QuestionMangementService {
   }
 
   postQuestion(ques:QuestionVM) : Observable<Question> {
-    debugger
+    
     return this.http.post<Question>(`${Url}api/Questions/`,ques,{ headers: PostHeaders }); 
   };
 

@@ -4,7 +4,7 @@
     class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-4">
       <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
-       </a>
+      </a>
       <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
         aria-controls="sidenav-collapse-main">
         <span class="navbar-toggler-icon"></span>
@@ -58,19 +58,20 @@
 
 
 
-  <div class="col-xl-3 col-lg-6" >
+  <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
       <div class="card-header">
         <h3 class="h2 font-weight-bold mb-0"><a>{{examAct.Name}}</a></h3>
       </div>
-      <div class="card-body" *ngFor="let item of categories" (click)="getQuestions(item)"
-      
-      appApplyStyle="background-color:rgba(255, 68, 0, 0.712);margin-left:10px">
-      
-      <div class="row">
+
+      <div class="card-body" *ngFor="let item of categories"
+        appApplyStyle="background-color:rgba(255, 68, 0, 0.712);margin-left:10px">
+
+        <div class="row">
           <div class="col">
-          <span class="h2 font-weight-bold mb-0" >
+            <span class="h2 font-weight-bold mb-0">
               {{item.Name}}
+              <button class="btn btn-primary" (click)="getQuestions(item)">show questions</button>
 
             </span>
           </div>
@@ -81,60 +82,53 @@
           </div>
 
 
-
           <div class="align-self-center" *ngIf="isGetQuestion && item.Id == choicedCategoryId">
-              <p>{{ques[tempQuestionNumber].QuestionId}} . {{ques[tempQuestionNumber].QuestionText}}</p>
+            <p>{{ques[tempQuestionNumber].QuestionId}} . {{ques[tempQuestionNumber].QuestionText}}</p>
+            <fieldset [id]="ques[tempQuestionNumber].QuestionId">
               <ul>
-                <li *ngFor="let answer of ques[tempQuestionNumber].Answers">
-                  <input name="answerQuestion" [(ngModel)]="answer1" [value]="answer" type="radio" />{{answer.AnswerText}}
+                <li *ngFor="let answer of currentQuestion.Answers;let i=index">
+                  <input [name]="currentQuestion.QuestionId"
+                    (ngModelChange)="updateChechedAnswer(currentQuestion.QuestionId,i,$event)"
+                    [checked]="answer.Checked" [ngModel]="answer.Checked" type="checkbox" />,<label
+                    [for]="answer">{{answer.AnswerText}}</label>
+                </li>
+
+              </ul>
+            </fieldset>
+
+
+
+
+
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <li class="page-item disabled" (click)="_prev(currentQuestion.QuestionId)">
+                  <a class="page-link">
+                    <i class="fas fa-angle-left"></i>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+
+                <li class="page-item" (click)="_next(currentQuestion.QuestionId)">
+                  <a class="page-link">
+                    <i class="fas fa-angle-right"></i>
+                    <span class="sr-only">Next</span>
+                  </a>
                 </li>
               </ul>
-          
-          
-          
-          
-           
-                  <nav aria-label="...">
-                    <ul class="pagination justify-content-end mb-0">
-                      <li class="page-item disabled" 
-                      (click)="Previous(ques[tempQuestionNumber].QuestionId)">
-                        <a class="page-link" >
-                          <i class="fas fa-angle-left"></i>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-                   
-                      <li class="page-item" 
-                      (click)="Next(ques[tempQuestionNumber].QuestionId)">
-                        <a class="page-link" >
-                          <i class="fas fa-angle-right"></i>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                  <button class="btn btn-primary" *ngIf="isSave" (click)=" SendUserAnswer()">finish</button>
-         
-              
+            </nav>
+            <button class="btn btn-primary" *ngIf="isSave" (click)=" SendUserAnswer()">finish</button>
 
-            </div>
 
+
+          </div>
 
 
 
 
 
         </div>
-     
+
       </div>
     </div>
   </div>
-
-
-
-
-
-  
-
-
-
