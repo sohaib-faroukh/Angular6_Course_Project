@@ -27,7 +27,7 @@ export class QuestionMangementService {
   }
 
   postQuestion(ques:QuestionVM) : Observable<Question> {
-    debugger
+    
     return this.http.post<Question>(`${Url}api/Questions/`,ques,{ headers: PostHeaders }); 
   };
 
@@ -91,5 +91,6 @@ const QSsVM:QuestionVM[] = [
       {Id:9,QuestionId:1, AnswerText:"test_3_answer_3" ,Mark:1}
     ]
   },
+  
   
 ]

@@ -25,7 +25,7 @@ export class QuestionManagementComponent implements OnInit {
   editableId:number=null;
   
   selectQues(item: Question){
-    debugger
+    
     this.selectedQues = item;
   }
 
@@ -38,7 +38,6 @@ export class QuestionManagementComponent implements OnInit {
   }
 
   saveChanges(event){
-    debugger;
   }
 
   postNewQues(){

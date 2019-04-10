@@ -5,21 +5,30 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { LoginServicesService } from './LoginServices/login-services.service';
 
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'doExam',
     pathMatch: 'full',
-  }, {
+  },
+  
+  {
+    path:'doExam',
+    loadChildren: './exam/exam.module#ExamModule'
+  },
+
+   {
     path: '',
     component: AdminLayoutComponent,
     children: [
       {
         path: '',
-        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule' ,  
+        canActivate : [LoginServicesService]
       }
-    ]
+    ] 
   }, {
     path: '',
     component: AuthLayoutComponent,

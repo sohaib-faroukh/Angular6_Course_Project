@@ -56,7 +56,7 @@ export class EditDetailComponent implements OnChanges {
   getDetails(Id: number | string) {
     this.QuesDetailsObs = this.srv.getQuesDetails(+Id);
     this.QuesDetailsObs.subscribe(res => {
-      debugger
+      
       this.QuesDetails= res;
     })
   }

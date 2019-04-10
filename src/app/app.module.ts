@@ -12,7 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { FoucsedRowDirective } from './foucsed-row.directive';
+// import { FoucsedRowDirective } from './foucsed-row.directive';
 // import { CheckedPipePipe } from './checked-pipe.pipe';
 
 
@@ -30,6 +30,7 @@ import { FoucsedRowDirective } from './foucsed-row.directive';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    // FoucsedRowDirective,
     // FoucsedRowDirective,
     // CheckedPipePipe
   ],

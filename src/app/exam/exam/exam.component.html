@@ -1,0 +1,134 @@
+<div class="main-continent">
+
+  <nav style="background-color:rgba(255, 68, 0, 0.712)"
+    class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+    <div class="container px-4">
+      <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
+      </a>
+      <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+        aria-controls="sidenav-collapse-main">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a routerLinkActive="active" [routerLink]="['/dashboard']">
+                <img src="assets/img/brand/blue.png">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
+              <i class="ni ni-planet"></i>
+              <span class="nav-link-inner--text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/register']">
+              <i class="ni ni-circle-08"></i>
+              <span class="nav-link-inner--text">Register</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/login']">
+              <i class="ni ni-key-25"></i>
+              <span class="nav-link-inner--text">Login</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/user-profile']">
+              <i class="ni ni-single-02"></i>
+              <span class="nav-link-inner--text">Profile</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+  <div class="col-xl-3 col-lg-6">
+    <div class="card card-stats mb-4 mb-xl-0">
+      <div class="card-header">
+        <h3 class="h2 font-weight-bold mb-0"><a>{{examAct.Name}}</a></h3>
+      </div>
+
+      <div class="card-body" *ngFor="let item of categories"
+        appApplyStyle="background-color:rgba(255, 68, 0, 0.712);margin-left:10px">
+
+        <div class="row">
+          <div class="col">
+            <span class="h2 font-weight-bold mb-0">
+              {{item.Name}}
+              <button class="btn btn-primary" (click)="getQuestions(item)">show questions</button>
+
+            </span>
+          </div>
+          <div class="col-auto">
+            <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+          </div>
+
+
+          <div class="align-self-center" *ngIf="isGetQuestion && item.Id == choicedCategoryId">
+            <p>{{ques[tempQuestionNumber].QuestionId}} . {{ques[tempQuestionNumber].QuestionText}}</p>
+            <fieldset [id]="ques[tempQuestionNumber].QuestionId">
+              <ul>
+                <li *ngFor="let answer of currentQuestion.Answers;let i=index">
+                  <input [name]="currentQuestion.QuestionId"
+                    (ngModelChange)="updateChechedAnswer(currentQuestion.QuestionId,i,$event)"
+                    [checked]="answer.Checked" [ngModel]="answer.Checked" type="checkbox" />,<label
+                    [for]="answer">{{answer.AnswerText}}</label>
+                </li>
+
+              </ul>
+            </fieldset>
+
+
+
+
+
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <li class="page-item disabled" (click)="_prev(currentQuestion.QuestionId)">
+                  <a class="page-link">
+                    <i class="fas fa-angle-left"></i>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+
+                <li class="page-item" (click)="_next(currentQuestion.QuestionId)">
+                  <a class="page-link">
+                    <i class="fas fa-angle-right"></i>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <button class="btn btn-primary" *ngIf="isSave" (click)=" SendUserAnswer()">finish</button>
+
+
+
+          </div>
+
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>

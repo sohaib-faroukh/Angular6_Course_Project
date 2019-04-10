@@ -9,6 +9,7 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
     
+  { path: '/do exam', title: 'Do Exam', icon: 'ni ni-air-baloon text-primary', class: '' },
   { path: '/question', title: 'Question Management', icon: 'ni ni-air-baloon text-primary', class: '' },
   { path: '/categories', title: 'Category Management', icon: 'ni ni-check-bold text-primary', class: '' }, 
   { path: '/exam', title: 'Exam Management', icon: 'ni ni-check-bold text-primary', class: '' }, 
@@ -41,3 +42,4 @@ export class SidebarComponent implements OnInit {
    });
   }
 }
+
