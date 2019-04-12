@@ -43,19 +43,22 @@ export class LoginServicesService implements /*CanLoad,*/ CanActivate {
 
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
- 
+
     this.prevUrl = "";
     this.prevUrl = this.router.url;
+
+    // Deveploment need to remove later
+    this.isLoggedIn = true ;
 
     if (this.isLoggedIn)
       return true;
     else {
 
-     
+
       this.redirectUrl = state.url;
-      
+
       this.router.navigate(['/login']);
-      
+
       return false;
     }
   }

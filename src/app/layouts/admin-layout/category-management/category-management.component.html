@@ -1,6 +1,6 @@
 <!-- Page content -->
 <div class="container-fluid">
-  
+
   <div class="row mt-5">
     <div class="col">
       <div class="card bg-default shadow">
@@ -10,12 +10,14 @@
 
 
 
-              <div class="text-center">
-                <button type="button" class="btn btn-primary mt-4" (click)="postNewCateg()">Add Category</button>
-              
-                <app-add-category (categoryChange)="pushNewCateg($event)" *ngIf="showAddCategCompo==true"></app-add-category>
-              
-              </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary mt-4" (click)="onAddClick()">
+            {{showAddCategCompo==false ? 'Add Category' : 'Close'}}
+          </button>
+
+          <app-add-category (newCateg)="pushNewCateg($event)" *ngIf="showAddCategCompo==true"></app-add-category>
+
+        </div>
 
 
 
@@ -24,8 +26,8 @@
             <thead class="thead-dark">
               <tr>
                 <th scope="col">CategoryText</th>
-               
-               
+                <th scope="col">Action</th>
+
                 <!-- <th scope="col">Users</th>
                 <th scope="col">Completion</th> -->
                 <th scope="col"></th>
@@ -39,25 +41,30 @@
                   {{item.Name}}
 
                 </th>
-                
+
+                <td>
+                  <div class="text-center">
+                    <button type="button" class="btn btn-primary mt-4" (click)="selectCateg(item)">Details</button>
+                  </div>
+
+                </td>
                 <td>
 
 
-                  <!-- <button [routerLink]="['details',item.Id]" routerLinkActive="router-link-active"  >Details</button> -->
+                  <button (click)="DeleteCate(item)">Delete</button>
 
                 </td>
-
               </tr>
-              
+
+
+
             </tbody>
           </table>
+          <app-category-edit-detail [categ]="selectedCateg" (updatedCateg)="put($event)"
+          *ngIf="selectedCateg && showEditCopm==true ">
+          </app-category-edit-detail>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-<router-outlet></router-outlet>
