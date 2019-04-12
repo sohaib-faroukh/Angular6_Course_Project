@@ -1,4 +1,4 @@
-import { PostHeaders, PutHeaders } from './../../../Config/config';
+import { PostHeaders, PutHeaders, DeleteHeaders } from './../../../Config/config';
 import { Question, QuestionVM } from './../../../Models/Questions';
 import {  HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -27,8 +27,24 @@ export class QuestionMangementService {
   }
 
   postQuestion(ques:QuestionVM) : Observable<Question> {
-    
-    return this.http.post<Question>(`${Url}api/Questions/`,ques,{ headers: PostHeaders }); 
+
+    // Local data
+    let q = new Question();
+    q.CategoryId = ques.CategoryId;
+    q.Id = ques.QuestionId;
+    q.IsHTML =ques.IsHTML;
+    q.QuestionText = ques.QuestionText;
+    q.QuestionTypeId= ques.QuestionTypeId;
+
+    QSsVM.push(ques);
+    QSs.push(q);
+
+
+    return of(q);
+
+    // API data 
+    // return this.http.post<Question>(`${Url}api/Questions/`,ques,{ headers: PostHeaders }); 
+
   };
 
   getQuesDetails(Id:number): Observable<QuestionVM> {
@@ -43,17 +59,51 @@ export class QuestionMangementService {
 
 
   putQues(ques:Question){
-    return this.http.put<QuestionVM>(
-      `${Url}api/Questions/${ques.Id}`,
-      ques,
-      { headers: PutHeaders});
+
+    let ix = QSs.findIndex(ele=>ele.Id==ques.Id);
+    ix > -1 ? QSs[ix] = ques : null; 
+    
+    let ix1 = QSsVM.findIndex(ele=>ele.QuestionId==ques.Id);
+    QSsVM[ix1].QuestionText= ques.QuestionText;
+    QSsVM[ix1].CategoryId= ques.CategoryId;
+    QSsVM[ix1].IsHTML= ques.IsHTML;
+    QSsVM[ix1].QuestionTypeId= ques.QuestionTypeId;
+
+
+
+    return of(QSsVM[ix1]);
+
+    // API data
+    // return this.http.put<QuestionVM>(
+    //   `${Url}api/Questions/${ques.Id}`,
+    //   ques,
+    //   { headers: PutHeaders});
   }
 
-  putAnswer(an:AnswerVM){
-    return this.http.put<AnswerVM>(`${Url}api/Answers/${an.Id}`,
-    an,
-    { headers: PutHeaders }
-    );    
+  putAnswer(an:AnswerVM):Observable<AnswerVM>{
+    
+    let ix = QSs.findIndex(ele => ele.Id == an.QuestionId);
+    QSsVM[ix].Answers.push(an);
+   
+    return of(an);
+
+    // return this.http.put<AnswerVM>(`${Url}api/Answers/${an.Id}`,
+    // an,
+    // { headers: PutHeaders }
+    // );    
+  }
+
+  deleteQues(ques:QuestionVM):Observable<Question>{
+    let ix = QSsVM.findIndex(ele => ele.QuestionId == ques.QuestionId);
+    let ix1 = QSs.findIndex(ele => ele.Id == ques.QuestionId);
+    QSsVM.splice(ix,1);
+    QSs.splice(ix1,1);
+
+    return of(QSs[ix1]);
+    // return this.http.delete<Question>(`${Url}api/Answers/${ques.QuestionId}`,
+    // { headers: DeleteHeaders }
+    // );   
+
   }
 
 }

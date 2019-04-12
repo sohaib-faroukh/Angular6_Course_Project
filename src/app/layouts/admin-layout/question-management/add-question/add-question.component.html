@@ -3,48 +3,32 @@
     <div class="card-header bg-white border-0">
       <div class="row align-items-center">
         <div class="col-8">
-          <!-- <h3 class="mb-0">{{QuesDetails.CategoryName}}</h3> -->
-          <!-- <h3 class="mb-0">{{QuesDetails | json}}</h3> -->
         </div>
-        <div class="col-4 text-right">
-          <a class="btn btn-sm btn-primary" (click)="update()">Edit</a>
-        </div>
-
-      
-<!-- <div *ngIf="errorList.length >0">
-  <ul>
-    <li style="color:red" *ngFor="let item of errorList">{{item}}</li>
-  </ul>
-</div> -->
-
-        <div class="col-4 text-right">
-          <button  class="btn btn-sm btn-primary" (click)="Cancel()">Cancel</button>
-        </div>
-
       </div>
     </div>
 
     <div class="card-body">
-      <form #submitForm = "ngForm">
+      <form #submitForm="ngForm">
 
-    <div class="col-4 text-right">
-      <button [disabled]="submitForm.invalid" class="btn btn-sm btn-primary" (click)="postNewQues();reset()">save</button>
-    </div>
+        <div class="col-4 text-right">
+          <button [disabled]="submitForm.invalid " class="btn btn-sm btn-primary"
+            (click)="postNewQues()">save</button>
+        </div>
+
+        <div class="col-4 text-right">
+            <button class="btn btn-sm btn-primary"
+              (click)="initQues()">reset</button>
+          </div>
 
 
-        <div class="pl-lg-4" >
+        <div class="pl-lg-4">
           <div class="col-4 text-right">
-            
-            <!-- {{newQuestion | json}} -->
+
+            <!-- {{newQuestion.Answers | json}} -->
 
             <label for="QText">Question Text : </label>
-            <input type="text" 
-            class="form-control form-control-alternative"
-             placeholder="Username" 
-             [(ngModel)]="newQuestion.QuestionText"
-              name="QText"
-              required
-              >
+            <input type="text" class="form-control form-control-alternative" placeholder="Question Text"
+              [(ngModel)]="newQuestion.QuestionText" name="QText" required>
           </div>
           <hr>
           <div class="row">
@@ -52,58 +36,54 @@
             <div class="col-lg-6">
               <div class="form-group">
 
-              
+
                 <label for="ans1">Answer 1 Text : </label>
 
-                <input  type="radio" id="huey" name="drone" value="huey" [checked]="newQuestion.Answers[0].Mark==1" (change)="changeSelectedAnswer(0)">
+                <input type="radio" id="drone1" name="drone1" value="newQuestion.Answers[0].Mark" 
+                [checked]="newQuestion.Answers[0].Mark==1"
+                  (change)="changeSelectedAnswer(0)">
 
-                <input required type="text"
-                 class="form-control form-control-alternative"
-                  placeholder="Username"
-                  [(ngModel)]="newQuestion.Answers[0].AnswerText"
-                  name="ans1">
-                  
-                  
-                  <hr>
-                  
-                  <label for="ans2">Answer 2 Text : </label> 
+                <input required type="text" class="form-control form-control-alternative" placeholder="Answer 1"
+                  [(ngModel)]="newQuestion.Answers[0].AnswerText" name="ans1">
 
-                  <input  type="radio" id="huey" name="drone" value="huey" [checked]="newQuestion.Answers[0].Mark==1" (change)="changeSelectedAnswer(1)">
-                  
-                  <input required type="text" 
-                  class="form-control form-control-alternative"
-                   placeholder="Username" 
-                   [(ngModel)]="newQuestion.Answers[1].AnswerText"
-                    name="ans2">
-                  
-                  
-                  <hr>
-                  
+
+                <hr>
+
+                <label for="ans2">Answer 2 Text : </label>
+
+                <input type="radio" id="drone2" name="drone2" value="newQuestion.Answers[1].Mark"
+                 [checked]="newQuestion.Answers[1].Mark==1"
+                  (change)="changeSelectedAnswer(1)">
+
+                <input required type="text" class="form-control form-control-alternative" placeholder="Answer 1"
+                  [(ngModel)]="newQuestion.Answers[1].AnswerText" name="ans2">
+
+
+                <hr>
+
                 <label for="ans3">Answer 3 Text : </label>
-                  
-                  <input type="radio" id="huey" name="drone" value="huey" [checked]="newQuestion.Answers[0].Mark==1" (change)="changeSelectedAnswer(2)">
-                  
-                  <input required type="text" 
-                  class="form-control form-control-alternative"
-                   placeholder="Username" 
-                   [(ngModel)]="newQuestion.Answers[2].AnswerText"
-                    name="ans3">
-                  
-                  
-                  <hr>
-                  
+
+                <input type="radio" id="drone3" name="drone4"
+                 value="newQuestion.Answers[2].Mark" [checked]="newQuestion.Answers[2].Mark==1"
+                  (change)="changeSelectedAnswer(2)">
+
+                <input required type="text" class="form-control form-control-alternative" placeholder="Answer 3"
+                  [(ngModel)]="newQuestion.Answers[2].AnswerText" name="ans3">
+
+
+                <hr>
+
                 <label for="ans4">Answer 4 Text : </label>
 
-                  <input  type="radio" id="huey" name="drone" value="huey" [checked]="newQuestion.Answers[0].Mark==1" (change)="changeSelectedAnswer(3)">
-                  
-                  <input required type="text" 
-                  class="form-control form-control-alternative"
-                   placeholder="Username"
-                   [(ngModel)]="newQuestion.Answers[3].AnswerText"
-                    name="ans4">
-                  
-                  
-                  <hr>
+                <input type="radio" id="drone4" name="drone4" value="newQuestion.Answers[3].Mark" 
+                [checked]="newQuestion.Answers[3].Mark==1"
+                  (change)="changeSelectedAnswer(3)">
+
+                <input required type="text" class="form-control form-control-alternative" placeholder="Answer 4"
+                  [(ngModel)]="newQuestion.Answers[3].AnswerText" name="ans4">
+
+
+                <hr>
 
               </div>
 
@@ -116,8 +96,9 @@
 
 
         <h3>Select Category : </h3>
-        <select required name="Cselect" id="Cselect" [(ngModel)]="newQuestion.CategoryId" (change)="selectCategName(newQuestion.CategoryId)">
-          <option *ngFor="let item_ of CategoriesV" [value]="item_.Id" >{{item_.Name}}</option>
+        <select required name="Cselect" id="Cselect" [(ngModel)]="newQuestion.CategoryId"
+          (change)="selectCategName(newQuestion.CategoryId)">
+          <option *ngFor="let item_ of CategoriesV" [value]="item_.Id">{{item_.Name}}</option>
         </select>
 
 

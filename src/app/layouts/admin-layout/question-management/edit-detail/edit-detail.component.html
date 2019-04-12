@@ -1,97 +1,95 @@
-
-
-
-
-
-
-<div class="col-xl-8 order-xl-1">
-  <div class="card bg-secondary shadow">
-    <div class="card-header bg-white border-0">
-      <div class="row align-items-center">
-        <div class="col-8">
-          <h3 class="mb-0">{{QuesDetails.CategoryName}}</h3>
-          <!-- <h3 class="mb-0">{{QuesDetails | json}}</h3> -->
-        </div>
-        <div class="col-4 text-right">
-          <a  class="btn btn-sm btn-primary" (click)="update()">Edit</a>
-        </div>
-       
-        <div class="col-4 text-right">
-          <button [disabled]="editable==false" class="btn btn-sm btn-primary" (click)="Save()">save</button>
-        </div>
-
-        <div class="col-4 text-right">
-          <button [disabled]="editable==false" class="btn btn-sm btn-primary" (click)="editable = false">Cancel</button>
-        </div>
-
-      </div>
-    </div>
-
-
-    {{QuesDetailsCopy | json}}
-
-    <div class="card-body" *ngIf="QuesDetails.Answers && QuesDetails.Answers.length > 0">
-      <form>
-        
-        <div class="pl-lg-4" *ngIf="editable==false">
+<div *ngIf="QuesDetails">
+  <div class="col-xl-8 order-xl-1">
+    <div class="card bg-secondary shadow">
+      <div class="card-header bg-white border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0">{{QuesDetails.CategoryName}}</h3>
+            <!-- <h3 class="mb-0">{{QuesDetails | json}}</h3> -->
+          </div>
           <div class="col-4 text-right">
-            <u>{{QuesDetails.QuestionText}} ?</u>
+            <a class="btn btn-sm btn-primary" (click)="update()">Edit</a>
           </div>
-          <div class="row" *ngFor="let a_item of QuesDetails.Answers">
-            <div class="col-lg-6">
-                <span class="form-control-label" >{{a_item.AnswerText}}</span>
-                <i class="ni ni-check-bold" *ngIf="a_item.Mark==1"></i>
-            </div>
-          
+
+          <div class="col-4 text-right">
+            <button [disabled]="editable==false" class="btn btn-sm btn-primary" (click)="Save()">save</button>
           </div>
-       
+
+          <div class="col-4 text-right">
+            <button [disabled]="editable==false" class="btn btn-sm btn-primary"
+              (click)="editable = false">Cancel</button>
+          </div>
+
         </div>
+      </div>
+
+
+      {{QuesDetailsCopy | json}}
+
+      <div class="card-body" *ngIf="QuesDetails.Answers && QuesDetails.Answers.length > 0">
+        <form>
+
+          <div class="pl-lg-4" *ngIf="editable==false">
+            <div class="col-4">
+              <h3 class="text-left text-xl text-blue text-capitalize"> <u>{{QuesDetails.QuestionText}} ?</u></h3>
+            </div>
+            <div class="row" *ngFor="let a_item of QuesDetails.Answers;let i=index">
+              <div class="col-lg-6">
+                <span class="form-control-label">{{ i+1 + " - "+a_item.AnswerText}}</span>
+                <i class="ni ni-check-bold" *ngIf="a_item.Mark==1"></i>
+              </div>
+
+            </div>
+
+          </div>
 
 
           <div class="pl-lg-4" *ngIf="editable==true">
             <div class="col-4 text-right">
               <u>{{QuesDetails.QuestionText}} ?</u>
-              <input type="text" 
-               class="form-control form-control-alternative" 
-               placeholder="Username" 
-               [(ngModel)]="QuesDetailsCopy.QuestionText"
-               name="name">
+              <input type="text" class="form-control form-control-alternative" placeholder="Username"
+                [(ngModel)]="QuesDetailsCopy.QuestionText" name="name">
             </div>
-<hr>
+            <hr>
             <div class="row" *ngFor="let a_item of QuesDetailsCopy.Answers">
               <div class="col-lg-6">
-                <div class="form-group"> 
+                <div class="form-group">
 
-                <span class="form-control-label" *ngIf="editable==false">{{a_item.AnswerText}}</span>
-                
-                <input type="radio" id="huey" 
-                name="drone" value="huey" 
-                [checked]="a_item.Mark==1" (change)="changeSelectedAnswer(a_item.Id)">
-                
-                <input  type="text"  class="form-control form-control-alternative" placeholder="Username"
-                      [(ngModel)]="a_item.AnswerText"
-                      [name]="a_item.Id">
-                        
+                  <div class="row">
+                    <div class="col-md-2">
+                      <input type="radio" id="huey" name="drone" value="huey" [checked]="a_item.Mark==1"
+                        (change)="changeSelectedAnswer(a_item.Id)">
                     </div>
-          
+                    <div class="col-md-8">
+                      <input type="text" class="form-control form-control-alternative" placeholder="Username"
+                        [(ngModel)]="a_item.AnswerText" [name]="a_item.Id">
+                    </div>
+                  </div>
+                </div>
+
                 <!-- <i class="ni ni-check-bold" *ngIf="a_item.Mark==1"></i> -->
               </div>
-          
+
             </div>
- 
-                <h3>Select Category : </h3>
-                <select required name="Cselect" id="Cselect" [(ngModel)]="QuesDetailsCopy.CategoryId" (change)="selectCategName(QuesDetailsCopy.CategoryId)">
-                  <option *ngFor="let item_ of CategoriesV" [value]="item_.Id">{{item_.Name}}</option>
-                </select>
-            
+
+            <h3>Select Category : </h3>
+            <select required name="Cselect" id="Cselect" [(ngModel)]="QuesDetailsCopy.CategoryId"
+              (change)="selectCategName(QuesDetailsCopy.CategoryId)">
+              <option *ngFor="let item_ of CategoriesV" [value]="item_.Id">{{item_.Name}}</option>
+            </select>
+
           </div>
 
 
- 
 
-       
-     
-      </form>
+
+
+
+        </form>
+      </div>
     </div>
   </div>
+</div>
+<div *ngIf="!QuesDetails">
+  <h4 class="text-danger text-center">No details for this question </h4>
 </div>
