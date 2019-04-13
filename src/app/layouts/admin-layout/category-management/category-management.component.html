@@ -47,11 +47,13 @@
                     <button type="button" class="btn btn-primary mt-4" (click)="selectCateg(item)">Details</button>
                   </div>
 
+
                 </td>
                 <td>
 
 
-                  <button (click)="DeleteCate(item)">Delete</button>
+                  <button class="btn btn-primary mt-4" (click)="DeleteCate(item)">
+                    <i class="ni ni-fat-remove"></i>Delete</button>
 
                 </td>
               </tr>
@@ -61,7 +63,7 @@
             </tbody>
           </table>
           <app-category-edit-detail [categ]="selectedCateg" (updatedCateg)="put($event)"
-          *ngIf="selectedCateg && showEditCopm==true ">
+            *ngIf="selectedCateg && showEditCopm==true ">
           </app-category-edit-detail>
         </div>
       </div>

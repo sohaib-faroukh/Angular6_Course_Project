@@ -28,7 +28,6 @@ export class FoucsedRowDirective {
   }
 
   putColor(color:string){
-    console.log(this.el.nativeElement.style);
     this.el.nativeElement.style.backgroundColor = color;
     this.el.nativeElement.style.marginTop = "20px";
   }

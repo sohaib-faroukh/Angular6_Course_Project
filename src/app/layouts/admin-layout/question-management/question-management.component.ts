@@ -10,7 +10,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./question-management.component.scss"]
 })
 export class QuestionManagementComponent implements OnInit {
-  constructor(private srv: QuestionMangementService) {}
+  constructor(private srv: QuestionMangementService) { }
 
   Questions: Observable<Question[]>;
   Questions_: Question[] = [];
@@ -18,12 +18,15 @@ export class QuestionManagementComponent implements OnInit {
   selectedQues: Question = new Question();
 
   showAddQuesCompo: boolean = false;
+  showEditQuesCompo: boolean = false;
 
   // QuesDetails:Observable<QuestionVM>;
   editableId: number = null;
 
   selectQues(item: Question) {
+
     this.selectedQues = item;
+    this.showEditQuesCompo = true;
   }
 
   getAllQusetions() {
@@ -34,15 +37,15 @@ export class QuestionManagementComponent implements OnInit {
     });
   }
 
-  saveChanges(event) {}
+  saveChanges(event) { }
 
   postNewQues() {
     this.showAddQuesCompo = !this.showAddQuesCompo;
   }
 
-  deleteQues(item) {
+  deleteQues(id: number) {
     if (confirm("are you sure ? ")) {
-      this.srv.deleteQues(item).subscribe(
+      this.srv.deleteQues(id).subscribe(
         res => {
           if (res) {
             this.Questions = this.srv.getAllQuestions();

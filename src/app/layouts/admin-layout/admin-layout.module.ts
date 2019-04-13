@@ -22,6 +22,7 @@ import { ExamManagementComponent } from './exam-management/exam-management.compo
 import { AddExamComponent } from './exam-management/add-exam/add-exam.component';
 import { CheckedPipePipe } from 'src/app/checked-pipe.pipe';
 import { FoucsedRowDirective } from 'src/app/foucsed-row.directive';
+import { EditExamComponent } from './exam-management/edit-exam/edit-exam.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -48,8 +49,10 @@ import { FoucsedRowDirective } from 'src/app/foucsed-row.directive';
     AddCategoryComponent,
     ExamManagementComponent,
     AddExamComponent,
+    EditExamComponent,
     FoucsedRowDirective,
     CheckedPipePipe,
+    EditExamComponent,
     // DatePipe,
   ],
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Exam } from 'src/app/Models/Exam';
 import { HttpClient } from '@angular/common/http';
-import { Url } from 'src/app/Config/config';
+import { Url, PostHeaders, PutHeaders, DeleteHeaders } from 'src/app/Config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +15,44 @@ export class ExamService {
 
   getAllExams(): Observable<Exam[]> {
 
+    // local test data
+    // return of(data);
+
     //API data
-    // return this.http.get<Exam[]>(Url + "api/Exams");
+    return this.http.get<Exam[]>(Url + "api/Exams");
 
-    // local test data 
-    return of(data);
 
+
+  }
+
+  postExam(e: Exam): Observable<Exam> {
+
+    // local data
+    e.Id = data.length + 1;
+    data.push(e);
+    // return of(data.find(ele => ele.Id == e.Id));
+
+    // API data
+    return this.http.post<Exam>(Url + "api/Exams",e,{headers:PostHeaders});
+  }
+
+  putExam(e: Exam): Observable<Exam> {
+    data[data.findIndex(el => el.Id == e.Id)] = e;
+    // return of(data.find(ele => ele.Id == e.Id));
+
+    // API data
+    return this.http.put<Exam>(Url + "api/Exams/"+e.Id,e,{headers:PutHeaders});
+
+  }
+
+  deleteExam(e: Exam): Observable<Exam> {
+
+
+    data.splice(data.findIndex(el => el.Id == e.Id), 1);
+    // return of(e);
+
+    // API data
+    return this.http.delete<Exam>(Url + "api/Exams/"+e.Id,{headers:DeleteHeaders});
   }
 
 }

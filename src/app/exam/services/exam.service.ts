@@ -17,14 +17,14 @@ export class ExamService {
   constructor(private http: HttpClient) { }
 
   getCurrentExam(): Observable<Exam> {
-    return of(data)
-    // return this.http.get<Exam>(Url + "api/Exams/CurrentExam");
+    // return of(data)
+    return this.http.get<Exam>(Url + "api/Exams/CurrentExam");
   }
 
   getQuestionsByCat(examId: number, catId: number): Observable<QuestionVM[]> {
 
-    return of(QSsVM);
-    // return this.http.get<QuestionVM[]>(Url + "api/Questions/" + examId + "/" + catId);
+    // return of(QSsVM);
+    return this.http.get<QuestionVM[]>(Url + "api/Questions/" + examId + "/" + catId);
   }
 
   sendUserAnswer(questionAnswer: UserCategoryAnswers) {
@@ -69,5 +69,5 @@ const QSsVM:QuestionVM[] = [
       {Id:9,QuestionId:1, AnswerText:"test_3_answer_3" ,Mark:1}
     ]
   },
-  
+
 ]
