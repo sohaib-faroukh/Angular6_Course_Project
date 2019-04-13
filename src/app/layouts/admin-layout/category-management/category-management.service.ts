@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {
   Url,
   PostHeaders,
@@ -8,55 +7,64 @@ import {
   DeleteHeaders
 } from "src/app/Config/config";
 import { Category } from "src/app/Models/Category";
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: "root"
 })
 export class CategoryManagementService {
-  constructor(private http: HttpClient) {}
+  headers_object;
+
+  constructor(private http: HttpClient) {
+  }
 
   getAllCategories(): Observable<Category[]> {
-    //  return this.http.get<Category[]>(Url +"api/categories");
-    return of(data);
+
+    // return of(data);
+
+    return this.http.get<Category[]>(Url + "api/categories");
+
   }
 
   getCatDetails(Id: number): Observable<Category> {
-    // return this.http.get<Category>(`${Url}api/Category/${Id}`);
-    return of(data.find(ele => ele.Id == Id));
+
+    // return of(data.find(ele => ele.Id == Id));
+
+    return this.http.get<Category>(`${Url}api/Category/${Id}`);
   }
 
   postCat(cat: Category): Observable<Category> {
 
 
-    data.concat(data,cat);
-    return of(cat);
+    data.concat(data, cat);
+    // return of(cat);
 
-    // return this.http.post<Category>(`${Url}api/categories/`, cat, {
-    //   headers: PostHeaders
-    // });
+    return this.http.post<Category>(`${Url}api/categories/`, cat, {
+      headers: PostHeaders
+    });
   }
 
-  putCat(cat: Category) : Observable<Category>{
-    let ix = data.findIndex(el=>el.Id==cat.Id);
+  putCat(cat: Category): Observable<Category> {
+    let ix = data.findIndex(el => el.Id == cat.Id);
     data[ix] = cat;
-    return of(cat);
+    // return of(cat);
 
-    // return this.http.put<Category>(`${Url}api/categories/${cat.Id}`, cat, {
-    //   headers: PutHeaders
-    // });
+    return this.http.put<Category>(`${Url}api/categories/${cat.Id}`, cat, {
+      headers: PutHeaders
+    });
   }
 
   deleteCat(cat: Category): Observable<Category> {
 
-    let ix = data.findIndex(el=>el.Id==cat.Id);
+    let ix = data.findIndex(el => el.Id == cat.Id);
 
-    data.splice(ix,1);
+    data.splice(ix, 1);
 
-    return of(data[ix]);
+    // return of(data[ix]);
 
-    // return this.http.delete<Category>(`${Url}api/categories/${cat.Id}`, {
-    //   headers: DeleteHeaders
-    // });
+    return this.http.delete<Category>(`${Url}api/categories/${cat.Id}`, {
+      headers: DeleteHeaders
+    });
   }
 }
 

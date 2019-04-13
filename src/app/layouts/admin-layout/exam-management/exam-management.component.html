@@ -29,11 +29,11 @@
 
           <!-- * datagrid  -->
 
-          
-        <div class="table-responsive">
+
+          <div class="table-responsive">
             <table class="table align-items-center table-dark table-flush">
               <thead class="thead-dark">
-                <tr appFoucsedRow = "red">
+                <tr appFoucsedRow="red">
                   <th scope="col"># </th>
                   <th scope="col">Exam name</th>
                   <th scope="col">Exam Date</th>
@@ -41,18 +41,22 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of ExamsObs | async" appFoucsedRow >
+                <tr *ngFor="let item of ExamsObs | async" appFoucsedRow>
                   <th scope="row"> {{item.Id}}</th>
-                  
+
                   <td>{{item.Name}}</td>
                   <td>{{item.ExamDate | date :'dd/MM/yyyy'}}</td>
 
                   <td>
-                     <div class="text-center">
-                      <button type="button"
-                       class="btn btn-primary mt-4" 
-                       (click)="selectQues(item)"
-                       >Details</button>
+                    <div class="row col-md-12 text-center">
+                      <div class="col-md-6">
+                        <button type="button" class="btn btn-primary mt-4" (click)="editExam(item)">Edit</button>
+
+                      </div>
+                      <div class="col-md-6">
+                        <button type="button" class="btn btn-primary mt-4" (click)="deleteExam(item)">Delete</button>
+
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -68,7 +72,22 @@
     </div>
 
 
+
   </div>
+
+
+  <div class="row col-md-12 text-center">
+    <button *ngIf="showEditCompo==true && selectedExam" type="button" class="btn btn-primary mt-4"
+      (click)="showEditCompo=false   ">
+      <i class="ni ni-fat-remove"></i> Close</button>
+
+
+
+    <app-edit-exam [_newExam]="selectedExam" (updatedExam)="putExam($event)"
+      *ngIf="showEditCompo==true && selectedExam">
+    </app-edit-exam>
+  </div>
+
 
 
 </div>

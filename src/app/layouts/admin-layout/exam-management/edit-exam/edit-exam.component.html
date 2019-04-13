@@ -1,5 +1,5 @@
-<div class="container-fluid mt--7">
-  <div class="row">
+<!-- <div class="container-fluid mt--7">
+  <div class="row"> -->
 
     <div class="col-xl-8 order-xl-1">
       <div class="card bg-secondary shadow">
@@ -27,9 +27,9 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" required for="input-email">Exam Date</label>
-                    <input type="date" id="input-email" [ngModel]="newExam.ExamDate"
-                      (ngModelChange)="newExam.ExamDate = $event " name="examDate"
+                    <label class="form-control-label" required for="ExamDate">Exam Date</label>
+                    <input type="date" id="ExamDate" [ngModel]="newExam.ExamDate"
+                      (ngModelChange)="changeInputDate($event) " name="examDate"
                       class="form-control form-control-alternative" placeholder="">
                   </div>
                 </div>
@@ -72,7 +72,9 @@
                     <div class="custom-control custom-control-alternative custom-checkbox"
                       *ngFor="let item_ of categs">
 
-                      <input class="custom-control-input" [id]="item_.Id" type="checkbox" [value]="item_['Checked']"
+                      <input class="custom-control-input" [id]="item_.Id"
+                      type="checkbox" [value]="item_['Checked']"
+                      [checked]="item_['Checked']"
                         (change)="changeQStatus(item_)">
 
                       <label class="custom-control-label" [for]="item_.Id">
@@ -113,5 +115,5 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  <!-- </div>
+</div> -->

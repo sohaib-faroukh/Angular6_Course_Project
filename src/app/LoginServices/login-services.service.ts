@@ -47,9 +47,6 @@ export class LoginServicesService implements /*CanLoad,*/ CanActivate {
     this.prevUrl = "";
     this.prevUrl = this.router.url;
 
-    // Deveploment need to remove later
-    this.isLoggedIn = true ;
-
     if (this.isLoggedIn)
       return true;
     else {
@@ -106,6 +103,8 @@ export class LoginServicesService implements /*CanLoad,*/ CanActivate {
 
     // use encryption if possible
     localStorage.setItem('currentUser', JSON.stringify(loginUser));
+    localStorage.setItem('Auth_token', this.loggedInUser.token);
+
   }
 
   getLoggedinInfo(): LoginModel {

@@ -13,7 +13,7 @@
           <button type="button" class="btn btn-primary mt-4" (click)="postNewQues()">
             {{ showAddQuesCompo==false ? 'Add Question' : 'close add section'}}</button>
 
-          <app-add-question  (questionsChange)="pushNewQues($event)" *ngIf="showAddQuesCompo==true"></app-add-question>
+          <app-add-question (questionsChange)="pushNewQues($event)" *ngIf="showAddQuesCompo==true"></app-add-question>
 
         </div>
 
@@ -29,7 +29,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of Questions | async" >
+              <tr *ngFor="let item of Questions | async">
                 <th scope="row">
                   {{item.QuestionText}}
                 </th>
@@ -37,19 +37,16 @@
                   {{item.CategoryName}}
                 </td> -->
                 <td>
-                   <div class="text-center">
-                    <button type="button"
-                     class="btn btn-primary mt-4"
-                     (click)="selectQues(item)"
-                     >Details</button>
-                  </div>
                   <div class="text-center">
-                      <button type="button"
-                       class="btn btn-primary mt-4"
-                       (click)="deleteQues(item)"
-                       >Delete</button>
-                    </div>
+                    <button type="button" class="btn btn-primary mt-4" (click)="selectQues(item)">Details</button>
+                  </div>
 
+
+                </td>
+                <td>
+
+                  <button type="button" class="btn btn-primary mt-4" (click)="deleteQues(item.Id)">
+                    <i class="ni ni-fat-remove"></i>Delete</button>
 
                 </td>
               </tr>
@@ -57,8 +54,14 @@
           </table>
         </div>
       </div>
-         <!-- <router-outlet></router-outlet> -->
-        <app-edit-detail [ques]="selectedQues" (ques)="saveChanges($event)" *ngIf="selectedQues!=undefined"></app-edit-detail>
+
+      <button *ngIf="showEditQuesCompo==true" type="button" class="btn btn-primary mt-4"
+        (click)="showEditQuesCompo = false">
+        <i class="ni ni-fat-remove"></i>Close</button>
+      <!-- <router-outlet></router-outlet> -->
+      <app-edit-detail [ques]="selectedQues" (ques)="saveChanges($event)"
+        *ngIf="showEditQuesCompo==true && selectedQues!=undefined">
+      </app-edit-detail>
     </div>
   </div>
 </div>

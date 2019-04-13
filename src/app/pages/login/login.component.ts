@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
 
-        alert("Invalid username or password ... ");
+        alert("connection failed or Invalid username or password ... "+err.statusText);
         this.router.navigate(["/login"]);
       }
     );

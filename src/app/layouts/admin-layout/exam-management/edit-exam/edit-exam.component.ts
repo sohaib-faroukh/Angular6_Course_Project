@@ -1,29 +1,29 @@
-import { QuestionMangementService } from "./../../question-management/question-mangement.service";
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-import { Question } from "src/app/Models/Questions";
-import { Exam } from "src/app/Models/Exam";
-import { CheckedPipePipe } from "src/app/checked-pipe.pipe";
-import { DatePipe } from "@angular/common";
-import * as $ from "jquery";
+import { Component, OnInit, EventEmitter, Output, OnChanges, Input } from '@angular/core';
+import { Question } from 'src/app/Models/Questions';
+import { Exam } from 'src/app/Models/Exam';
 import { ExamService } from "../exam.service";
-import { CategoryManagementService } from "../../category-management/category-management.service";
-import { Category } from "src/app/Models/Category";
-import { Observable } from "rxjs";
-
-// declare $;
+import { QuestionMangementService } from '../../question-management/question-mangement.service';
+import { CheckedPipePipe } from 'src/app/checked-pipe.pipe';
+import { DatePipe } from '@angular/common';
+import * as $ from "jquery";
+import { Category } from 'src/app/Models/Category';
+import { Observable } from 'rxjs';
+import { CategoryManagementService } from '../../category-management/category-management.service';
 
 @Component({
-  selector: "app-add-exam",
-  templateUrl: "./add-exam.component.html",
-  styleUrls: ["./add-exam.component.scss"]
+  selector: 'app-edit-exam',
+  templateUrl: './edit-exam.component.html',
+  styleUrls: ['./edit-exam.component.scss']
 })
-export class AddExamComponent implements OnInit {
+export class EditExamComponent implements OnChanges {
 
   categs: Category[] = [];
 
+  @Input() _newExam: Exam = new Exam();
+
   newExam: Exam = new Exam();
 
-  @Output() addedExam = new EventEmitter<Exam>();
+  @Output() updatedExam = new EventEmitter<Exam>();
 
   constructor(
     private srv2: CategoryManagementService,
@@ -45,6 +45,12 @@ export class AddExamComponent implements OnInit {
 
     // }
   }
+
+
+  changeInputDate(event){
+    this.newExam.ExamDate = event;
+  }
+
   saveExam() {
     let exam: Exam = new Exam();
     Object.assign(exam, this.newExam);
@@ -58,9 +64,9 @@ export class AddExamComponent implements OnInit {
       alert("Select one category at least ...");
     } else {
       debugger
-      this.srv1.postExam(exam).subscribe(
+      this.srv1.putExam(exam).subscribe(
         res => {
-          this.addedExam.emit(res);
+          this.updatedExam.emit(res);
         },
         err => {
           alert("connection failed ... " + err.statusText);
@@ -78,7 +84,9 @@ export class AddExamComponent implements OnInit {
     console.log(this.categs);
   }
 
-  ngOnInit() {
+  ngOnChanges() {
+
+    Object.assign(this.newExam, this._newExam);
 
     let d: Observable<Category[]>;
     d = this.srv2.getAllCategories();
@@ -86,7 +94,17 @@ export class AddExamComponent implements OnInit {
     d.subscribe(res => {
       this.categs = res;
       this.categs.forEach(ele => {
-        ele["Checked"] = false;
+        if (this.newExam.Categories.length > 0) {
+          if (this.newExam.Categories.find(r => r.Id == ele.Id)) {
+            ele["Checked"] = true;
+
+          } else {
+            ele["Checked"] = false;
+
+          }
+        } else {
+          ele["Checked"] = false;
+        }
       })
 
     })
